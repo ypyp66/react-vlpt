@@ -16,8 +16,8 @@ const EventPractice = () => {
   const onChange = (e) => {
     //input하나에 동작하므로
     const nextForm = {
-      ...form, //state에 값이 2개가 있으니 남은 값을 가져오고
-      [e.target.name]: e.target.value, //바꿀 값을 바꿈
+      ...form, // 기존의 form 내용을 이 자리에 복사한 다음
+      [e.target.name]: e.target.value, // 원하는 값을 덮어씌우기
     };
     setForm(nextForm); //setForm을 호출하여 form을 nextForm으로 바꿔줌
     console.log(form);
