@@ -1,12 +1,13 @@
 import { useState, Component } from "react";
 import LifeCycle from "./LifeCycle";
+import ErrorBoundary from "./ErrorBoundary";
 
 function getRandomColor() {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 class App extends Component {
   state = {
-    color: "#000000",
+    color: this.props.color,
   };
 
   handleClick = () => {
@@ -18,8 +19,10 @@ class App extends Component {
   render() {
     return (
       <div style={{ padding: "1rem" }}>
-        <button onClick={this.handleClick}>랜덤 색상</button>
-        <LifeCycle color={this.state.color} />
+        <ErrorBoundary>
+          <button onClick={this.handleClick}>랜덤 색상</button>
+          <LifeCycle color={this.state.color} />
+        </ErrorBoundary>
       </div>
     );
   }
