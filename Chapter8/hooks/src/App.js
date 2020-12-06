@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Counter from "./Counter";
 import Info from "./Info";
+import Average from "./Average";
 
 function App() {
   const [visible, setVisible] = useState(false);
 
   return (
     <div style={{ padding: "1rem" }}>
-      <button
+      {/* <button
         onClick={() => {
           setVisible(!visible);
         }}
@@ -16,7 +17,8 @@ function App() {
       </button>
       <Counter />
       <br />
-      {visible && <Info />}
+      {visible && <Info />} */}
+      <Average />
     </div>
   );
 }
