@@ -3,6 +3,7 @@ import useInputs from "./useInputs";
 
 const Info = () => {
   const [state, onChange] = useInputs({
+    //기본값
     name: "",
     nickname: "",
   });
