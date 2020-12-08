@@ -17,8 +17,9 @@ function App() {
       </button>
       <Counter />
       <br />
-      {visible && <Info />} */}
-      <Average />
+      {visible && <Info />} 
+      <Average />*/}
+      <Info />
     </div>
   );
 }
