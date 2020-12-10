@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "node-sass": "^5.0.0",
     "react-app-polyfill": "^2.0.0"
   }
 }
