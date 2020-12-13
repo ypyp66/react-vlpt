@@ -13,7 +13,8 @@ function App() {
 
   const nextId = useRef(4);
 
-  const Insert = useCallback(
+  const onInsert = useCallback(
+    //todos가 변경될 때마다 함수 재사용
     (text) => {
       const todo = {
         id: nextId.current,
@@ -25,10 +26,29 @@ function App() {
     },
     [todos],
   );
+
+  const onRemove = useCallback(
+    (id) => {
+      setTodos(todos.filter((todo) => todo.id != id));
+    },
+    [todos],
+  );
+
+  const onToggle = useCallback(
+    (id) => {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        ),
+      );
+    },
+    [todos],
+  );
+
   return (
     <TodoTemplate>
-      <TodoInsert onInsert={Insert} />
-      <TodoList todos={todos} />
+      <TodoInsert onInsert={onInsert} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
 }
