@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import produce from "immer";
 
 const App = () => {
   const nextId = useRef(1);
@@ -10,14 +11,16 @@ const App = () => {
 
   //input에 입력할때
   const onChange = useCallback(
+    //form이 변경될 때 함수 생성
     (e) => {
       const { name, value } = e.target;
-      setForm({
-        ...form,
-        [name]: [value],
-      });
+      setForm(
+        produce((draft) => {
+          draft[name] = value;
+        })
+      );
     },
-    [form]
+    []
   );
 
   //form 등록
@@ -31,10 +34,11 @@ const App = () => {
       };
 
       //array에 새 항목 등록
-      setData({
-        ...data, //기존 배열 가져와서
-        array: data.array.concat(info), //새로만든 객체 append
-      });
+      setData(
+        produce((draft) => {
+          draft.array.push(info);
+        })
+      );
 
       //form 초기화
       setForm({
@@ -44,18 +48,19 @@ const App = () => {
 
       nextId.current += 1;
     },
-    [data, form.name, form.username]
+    [form.name, form.username]
   );
 
-  const onRemove = useCallback(
-    (id) => {
-      setData({
-        ...data,
-        array: data.array.filter((info) => info.id !== id),
-      });
-    },
-    [data]
-  );
+  const onRemove = useCallback((id) => {
+    setData(
+      produce((draft) => {
+        draft.array.splice(
+          draft.array.findIndex((info) => info.id === id),
+          1
+        );
+      })
+    );
+  }, []);
 
   return (
     <div style={{ margin: "1rem" }}>
