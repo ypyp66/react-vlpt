@@ -1,3 +1,5 @@
+import WithRouterSample from "./WithRouterSample";
+
 const data = {
   velopert: {
     name: "김민준",
@@ -22,6 +24,7 @@ const Profile = ({ match }) => {
         {username}({profile.name})
       </h3>
       <p>{profile.description}</p>
+      <WithRouterSample />
     </div>
   );
 };
