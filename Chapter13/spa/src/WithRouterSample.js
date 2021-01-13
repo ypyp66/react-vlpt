@@ -20,4 +20,4 @@ const WithRouterSample = ({ location, match, history }) => {
   );
 };
 
-export default WithRouterSample;
+export default withRouter(WithRouterSample);

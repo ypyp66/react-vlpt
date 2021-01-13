@@ -1,3 +1,4 @@
+import { withRouter } from "react-router-dom";
 import WithRouterSample from "./WithRouterSample";
 
 const data = {
@@ -29,4 +30,4 @@ const Profile = ({ match }) => {
   );
 };
 
-export default Profile;
+export default withRouter(Profile);
